@@ -1,0 +1,42 @@
+#!/opt/local/bin/ruby1.9
+
+require "bundler/setup"
+Bundler.require(:default)
+
+require "scm-workflow.rb"
+require "utils/command-dispatcher.rb"
+
+# -----------------------------------------------------------------------------
+# This program is meant to be used as an extention to the git scm program.  It
+# provides a set of development workflows such as retrieving task information
+# from the rallydev application, automatically generating code review for the
+# smartbear software, automatically kick a build...
+#
+# Never call the scripts directly, always use git scw <command> instead of
+# git-scw-<command>
+#
+# Author::    Pat Laplante  (mailto:plaplante@pharos.com)
+# Copyright:: Copyright (c) 2012 Pharos
+# License::   ???
+# -----------------------------------------------------------------------------
+
+$scriptPath = File.expand_path(File.dirname(__FILE__))
+$scriptName = File.basename(__FILE__)
+$command = ARGV.shift
+
+dispatcher = ScmWorkflow::Utils::CommandDispatcher.new( $scriptPath, $scriptName )
+
+# -----------------------------------------------------------------------------
+# -----------------------------------------------------------------------------
+begin
+  dispatcher.dispatchCommand($command, *ARGV)
+rescue ArgumentError => ex
+  $stderr.puts "Error: " + ex.to_s + ".  Please specify a valid command."
+  dispatcher.usage
+  exit -1
+ensure
+end
+
+# -----------------------------------------------------------------------------
+# set filetype=ruby
+# -----------------------------------------------------------------------------
