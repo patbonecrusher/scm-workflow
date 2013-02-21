@@ -82,8 +82,8 @@ module Scm::Workflow
         @serverurl = ConfigElement.new("Rally server url", false, "https://rally1.rallydev.com/")
         @username = ConfigElement.new("Rally username", false, "")
         @password = ConfigElement.new("Rally password", true, "")
-        @workspace = ConfigElement.new("Rally workspace", false, "Pharos")
-        @project = ConfigElement.new("Rally project", false, "MPS / Mobile Client")
+        @workspace = ConfigElement.new("Rally workspace", false, "")
+        @project = ConfigElement.new("Rally project", false, "")
       end
   
       def to_s

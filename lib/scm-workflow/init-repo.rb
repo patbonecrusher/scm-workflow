@@ -58,31 +58,31 @@ module Scm::Workflow
     # -------------------------------------------------------------------------
     # -------------------------------------------------------------------------
     def on_retrieving_entry(new_state, event, *args)
-      puts "E: Retrieving pharos configuration info"
+      puts "E: Retrieving configuration info"
       
       @repo.readConfiguration(@configData)
 
     end
 
     def on_retrieving_exit(new_state, event, *args)
-      puts "X: Retrieving pharos configuration info done"
+      puts "X: Retrieving configuration info done"
     end
     
     # -------------------------------------------------------------------------
     # -------------------------------------------------------------------------
     def on_querying_entry(new_state, event, *args)
-      puts "E: Querying pharos configuration info"
+      puts "E: Querying configuration info"
       @callback.call(@configData)
     end
 
     def on_querying_exit(new_state, event, *args)
-      puts "X: Querying pharos configuration info done"
+      puts "X: Querying configuration info done"
     end
     
     # -------------------------------------------------------------------------
     # -------------------------------------------------------------------------
     def on_persisting_entry(new_state, event, *args)
-      puts "E: Persisting pharos configuration info"
+      puts "E: Persisting configuration info"
       
       @configData.instance_variables.each do |v|
         globalEntry = @configData.instance_variable_get(v)
@@ -91,7 +91,7 @@ module Scm::Workflow
         globalEntry.instance_variables.each do |sv|
           begin
             entry = globalEntry.instance_variable_get(sv)
-            @repo.setConfigValue("pharos.#{entryTitle}.#{sv[1..-1]}", entry.value, entry.hideinput)
+            @repo.setConfigValue("scm-workflow.#{entryTitle}.#{sv[1..-1]}", entry.value, entry.hideinput)
           rescue => exception
           end
         end
@@ -100,7 +100,7 @@ module Scm::Workflow
     end
 
     def on_persisting_exit(new_state, event, *args)
-      puts "X: Persisting pharos configuration info done"
+      puts "X: Persisting configuration info done"
     end
     
     def repoIsValid?

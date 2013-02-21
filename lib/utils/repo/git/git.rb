@@ -41,7 +41,7 @@ module Scm::Workflow::Utils::Repo::Git
         globalEntry.instance_variables.each do |sv|
           begin
             entry = globalEntry.instance_variable_get(sv)
-            entry.value = getConfigValue("pharos.#{globalEntry.class.name.split('::').last.downcase}.#{sv[1..-1]}", entry.hideinput)
+            entry.value = getConfigValue("scm-workflow.#{globalEntry.class.name.split('::').last.downcase}.#{sv[1..-1]}", entry.hideinput)
           rescue => exception
             return false
           end

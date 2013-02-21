@@ -15,8 +15,8 @@ require "utils/command-dispatcher.rb"
 # Never call the scripts directly, always use git scw <command> instead of
 # git-scw-<command>
 #
-# Author::    Pat Laplante  (mailto:plaplante@pharos.com)
-# Copyright:: Copyright (c) 2012 Pharos
+# Author::    Pat Laplante  (mailto:junk@covenofchaos.com)
+# Copyright:: Copyright (c) 2012 CovenOfChaos
 # License::   ???
 # -----------------------------------------------------------------------------
 
