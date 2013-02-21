@@ -24,7 +24,7 @@ $scriptPath = File.expand_path(File.dirname(__FILE__))
 $scriptName = File.basename(__FILE__)
 $command = ARGV.shift
 
-dispatcher = ScmWorkflow::Utils::CommandDispatcher.new( $scriptPath, $scriptName )
+dispatcher = Scm::Workflow::Utils::CommandDispatcher.new( $scriptPath, $scriptName )
 
 # -----------------------------------------------------------------------------
 # -----------------------------------------------------------------------------

@@ -26,17 +26,13 @@ end
 # OptionParser.
 #-----------------------------------------------------------------------------
 options = {}
+loglevels = [:debug, :info, :warn, :error, :fatal]
  
 optparse = OptionParser.new do|opts|
   # Set a banner, displayed at the top of the help screen.
   opts.banner = "Usage: optparse1.rb [options] file1 file2 ..."
    
   # Define the options, and what they do
-  options[:verbose] = false
-  opts.on( '-v', '--verbose', 'Output more information' ) do
-  options[:verbose] = true
-  end
-   
   options[:quick] = false
   opts.on( '-q', '--quick', 'Perform the task quickly' ) do
   options[:quick] = true
@@ -51,7 +47,17 @@ optparse = OptionParser.new do|opts|
   opts.on( '-u', '--usage', 'Print one liner about this script' ) do
      options[:usage] = true
   end
- 
+
+  options[:list] = []
+  opts.on( '-l', '--list a,b,c', Array, "List of parameters" ) do |l|
+    options[:list] = l
+  end
+  
+  options[:loglevel] = nil
+  opts.on( '-v', '--loglevel OPT', loglevels, "Log level" ) do |s|
+    options[:loglevel] = s
+  end 
+
   # This displays the help screen, all programs are assumed to have this 
   # option.
   opts.on( '-h', '--help', 'Display this screen' ) do
@@ -74,20 +80,25 @@ rescue => ex
 end
 usage if options[:usage]
 
-puts "Being verbose" if options[:verbose]
 puts "Being quick" if options[:quick]
 puts "Logging to file #{options[:logfile]}" if options[:logfile]
- 
+
+loglevel = options[:loglevel]
+logsettings = Scm::Workflow::Utils::LogSettings.instance
+logsettings.level = loglevels.index(loglevel) if options[:loglevel]
+logsettings.output = options[:logfile] if options[:logfile]
+
 #-----------------------------------------------------------------------------
 # ..................... E X E C U T I O N .. G U T S ........................
 #-----------------------------------------------------------------------------
-myRepo = ScmWorkflow::Utils::Repo::Git::GitRepo.new(Dir.pwd)
-initWorkflow = ScmWorkflow::InitializeRepo.new(myRepo)
+myRepo = Scm::Workflow::Utils::Repo::Git::GitRepo.new(Dir.pwd)
+initWorkflow = Scm::Workflow::InitializeRepo.new(myRepo)
 
 #-----------------------------------------------------------------------------
 #-----------------------------------------------------------------------------
 begin
   initWorkflow.execute { |configuration| 
+    Scm::Workflow::Utils::Logging.instance.logger.warn("bll")
     configuration.instance_variables.each do |v|
       globalEntry = configuration.instance_variable_get(v)
       

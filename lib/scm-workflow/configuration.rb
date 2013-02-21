@@ -1,16 +1,22 @@
 require "bundler/setup"
 Bundler.require(:default)
 
-module ScmWorkflow
+module Scm
+  module Workflow
+  end
 end
 
-module ScmWorkflow
+module Scm::Workflow
 
+  # ---------------------------------------------------------------------------
+  # ---------------------------------------------------------------------------
   class Configuration
     attr_accessor :flow;
     attr_accessor :collab;
     attr_accessor :rally;
     
+    # -------------------------------------------------------------------------
+    # -------------------------------------------------------------------------
     class ConfigElement
       attr_reader :info;
       attr_accessor :value;
@@ -23,6 +29,8 @@ module ScmWorkflow
       end
     end
     
+    # -------------------------------------------------------------------------
+    # -------------------------------------------------------------------------
     class Flow
       attr_accessor :develop;
       attr_accessor :feature;
@@ -38,6 +46,8 @@ module ScmWorkflow
       
     end
     
+    # -------------------------------------------------------------------------
+    # -------------------------------------------------------------------------
     class CodeCollab
       attr_accessor :app_exec_path;
       attr_accessor :username;
@@ -59,6 +69,8 @@ module ScmWorkflow
 
     end
 
+    # -------------------------------------------------------------------------
+    # -------------------------------------------------------------------------
     class Rally
       attr_accessor :username;
       attr_accessor :password;
@@ -80,6 +92,8 @@ module ScmWorkflow
     
     end
     
+    # -------------------------------------------------------------------------
+    # -------------------------------------------------------------------------
     def initialize
       @info = Flow.new
       @collab = CodeCollab.new

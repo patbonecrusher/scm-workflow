@@ -1,11 +1,13 @@
-module ScmWorkflow
-  module Utils
-    module Repo
+module Scm 
+  module Workflow
+    module Utils
+      module Repo
+      end
     end
   end
 end
 
-module ScmWorkflow::Utils::Repo
+module Scm::Workflow::Utils::Repo
 
   # ---------------------------------------------------------------------------
   # ---------------------------------------------------------------------------

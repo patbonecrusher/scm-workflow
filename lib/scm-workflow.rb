@@ -1,4 +1,5 @@
 require "scm-workflow/version"
+require "utils/logging"
 
 module Scm
   module Workflow

@@ -1,20 +1,22 @@
 require "bundler/setup"
 Bundler.require(:default)
 
-module ScmWorkflow
-  module Utils
-    module Repo
-      module Git
+module Scm
+  module Workflow
+    module Utils
+      module Repo
+        module Git
+        end
       end
     end
   end
 end
 
-module ScmWorkflow::Utils::Repo::Git
+module Scm::Workflow::Utils::Repo::Git
 
   # ---------------------------------------------------------------------------
   # ---------------------------------------------------------------------------
-  class GitRepo < ScmWorkflow::Utils::Repo::Repo
+  class GitRepo < Scm::Workflow::Utils::Repo::Repo
   
     # -------------------------------------------------------------------------
     # -------------------------------------------------------------------------

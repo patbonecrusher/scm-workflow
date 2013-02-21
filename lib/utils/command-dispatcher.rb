@@ -1,9 +1,11 @@
-module ScmWorkflow
-  module Utils
+module Scm 
+  module Workflow
+    module Utils
+    end
   end
 end
 
-module ScmWorkflow::Utils
+module Scm::Workflow::Utils
 
   # ---------------------------------------------------------------------------
   # ---------------------------------------------------------------------------

@@ -1,19 +1,23 @@
 require "bundler/setup"
 Bundler.require(:default)
 
-module ScmWorkflow
+module Scm
+  module Workflow
+  end
 end
 
-module ScmWorkflow
+module Scm::Workflow
 
   class InitRepoWorkflow
+    include Logging
     include Workflow
     
     # -------------------------------------------------------------------------
     # -------------------------------------------------------------------------
     def initialize(repo, &block)
+      logger.error "About to combobulate the whizbang"
       @repo = repo
-      @configData = ScmWorkflow::Configuration.new
+      @configData = Scm::Workflow::Configuration.new
       @callback = block
     end
   
