@@ -1,4 +1,4 @@
-Copyright (c) 2013 Pat Laplante
+Copyright (c) 2013 Bone Crusher
 
 MIT License
 
