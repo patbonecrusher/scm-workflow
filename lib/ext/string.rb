@@ -1,5 +1,5 @@
 require "bundler/setup"
-require "Kruptos/Blowfish"
+require "kruptos"
 require "base64"
 
 Bundler.require(:default)

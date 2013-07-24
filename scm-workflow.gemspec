@@ -29,7 +29,7 @@ Gem::Specification.new do |gem|
   gem.add_dependency 'gitit', '>= 0.4.0'
   gem.add_dependency 'highline'
   gem.add_dependency 'builder'
-  gem.add_dependency 'kruptos'
+  gem.add_dependency 'kruptos', '0.2.0'
   gem.add_dependency 'inflector'
   gem.add_dependency 'workflow'
 
