@@ -8,9 +8,6 @@ require "scm-workflow"
 require "kruptos"
 require "base64"
 
-#require 'scm-workflow/configuration.rb'
-#require 'scm-workflow/init-repo.rb'
-
 #-----------------------------------------------------------------------------
 #-----------------------------------------------------------------------------
 def usage() 

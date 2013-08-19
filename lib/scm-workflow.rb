@@ -11,7 +11,6 @@ require "workflow"
 
 require "scm-workflow/configuration"
 Dir[File.dirname(__FILE__) + "/scm-workflow/workflow-*.rb"].each do |file|
-  puts file
   require file
 end
 

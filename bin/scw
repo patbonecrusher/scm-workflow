@@ -1,6 +1,8 @@
 #!/usr/bin/env ruby
 
-require "scm-workflow.rb"
+require "bundler/setup"
+Bundler.require(:default)
+
 require "utils/command-dispatcher.rb"
 
 # -----------------------------------------------------------------------------
