@@ -27,7 +27,7 @@ Gem::Specification.new do |gem|
 
   gem.add_runtime_dependency 'bundler', '>= 1.0.0'
   gem.add_runtime_dependency 'ruby'
-  gem.add_runtime_dependency 'gitit', '>= 0.4.0'
+  gem.add_runtime_dependency 'gitit', '>= 0.5.0'
   gem.add_runtime_dependency 'highline'
   gem.add_runtime_dependency 'builder'
   gem.add_runtime_dependency 'kruptos', '>= 0.2.0'
