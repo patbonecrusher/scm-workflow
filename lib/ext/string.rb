@@ -1,8 +1,5 @@
-require "bundler/setup"
 require "kruptos"
 require "base64"
-
-Bundler.require(:default)
 
 class String
 

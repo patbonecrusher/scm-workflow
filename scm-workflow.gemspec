@@ -23,9 +23,9 @@ Gem::Specification.new do |gem|
   gem.add_development_dependency 'cli-colorize'
   gem.add_development_dependency 'rdoc', '>= 3.12'
   gem.add_development_dependency 'cucumber', '>= 1.0'
-  gem.add_development_dependency 'bundler', '>= 1.0.0'
   gem.add_development_dependency 'simplecov'
 
+  gem.add_runtime_dependency 'bundler', '>= 1.0.0'
   gem.add_runtime_dependency 'ruby'
   gem.add_runtime_dependency 'gitit', '>= 0.4.0'
   gem.add_runtime_dependency 'highline'

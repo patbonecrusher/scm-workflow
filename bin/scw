@@ -1,9 +1,7 @@
 #!/usr/bin/env ruby
 
-require "bundler/setup"
-Bundler.require(:default)
-
-require "utils/command-dispatcher.rb"
+require "scm-workflow"
+require "utils/command-dispatcher"
 
 # -----------------------------------------------------------------------------
 # This program is meant to be used as an extention to the git scm program.  It
