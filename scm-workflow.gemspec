@@ -26,12 +26,12 @@ Gem::Specification.new do |gem|
   gem.add_development_dependency 'bundler', '>= 1.0.0'
   gem.add_development_dependency 'simplecov'
 
-  gem.add_dependency 'ruby'
-  gem.add_dependency 'gitit', '>= 0.4.0'
-  gem.add_dependency 'highline'
-  gem.add_dependency 'builder'
-  gem.add_dependency 'kruptos', '>= 0.2.0'
-  gem.add_dependency 'inflector'
-  gem.add_dependency 'workflow'
+  gem.add_runtime_dependency 'ruby'
+  gem.add_runtime_dependency 'gitit', '>= 0.4.0'
+  gem.add_runtime_dependency 'highline'
+  gem.add_runtime_dependency 'builder'
+  gem.add_runtime_dependency 'kruptos', '>= 0.2.0'
+  gem.add_runtime_dependency 'inflector'
+  gem.add_runtime_dependency 'workflow'
 
 end
