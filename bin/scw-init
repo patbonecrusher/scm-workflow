@@ -1,14 +1,15 @@
-#!/opt/local/bin/ruby1.9
+#!/usr/bin/env ruby
 
 require "bundler/setup"
 Bundler.require(:default)
 
-require "scm-workflow.rb"
+require 'highline/import'
+require "scm-workflow"
+require "kruptos"
+require "base64"
 
-require 'utils/repo/repo.rb'
-require 'utils/repo/git/git.rb'
-require 'scm-workflow/configuration.rb'
-require 'scm-workflow/init-repo.rb'
+#require 'scm-workflow/configuration.rb'
+#require 'scm-workflow/init-repo.rb'
 
 #-----------------------------------------------------------------------------
 #-----------------------------------------------------------------------------
@@ -49,7 +50,7 @@ optparse = OptionParser.new do|opts|
   end
 
   options[:list] = []
-  opts.on( '-l', '--list a,b,c', Array, "List of parameters" ) do |l|
+  opts.on( '-a', '--list a,b,c', Array, "List of parameters" ) do |l|
     options[:list] = l
   end
   
@@ -65,7 +66,7 @@ optparse = OptionParser.new do|opts|
     exit
   end
 end
- 
+
 #-----------------------------------------------------------------------------
 # Parse the command-line. Remember there are two forms of the parse method. 
 # The 'parse' method simply parses ARGV, while the 'parse!' method parses 
@@ -91,17 +92,25 @@ logsettings.output = options[:logfile] if options[:logfile]
 #-----------------------------------------------------------------------------
 # ..................... E X E C U T I O N .. G U T S ........................
 #-----------------------------------------------------------------------------
-myRepo = Scm::Workflow::Utils::Repo::Git::GitRepo.new(Dir.pwd)
-initWorkflow = Scm::Workflow::InitializeRepo.new(myRepo)
+git = Gitit::Git.new(Dir.pwd)
+#Test it is a valid repo, if not create it.
+config = git.config
 
 #-----------------------------------------------------------------------------
 #-----------------------------------------------------------------------------
 begin
-  initWorkflow.execute { |configuration| 
-    Scm::Workflow::Utils::Logging.instance.logger.warn("bll")
-    configuration.instance_variables.each do |v|
-      globalEntry = configuration.instance_variable_get(v)
-      
+
+  configBlocks = Array.new
+  configBlocks << Scm::Workflow::Flow.new
+  configBlocks << Scm::Workflow::CodeCollab.new
+  configBlocks << Scm::Workflow::Rally.new
+
+  initRepo = Scm::Workflow::InitializeRepo.new(git, configBlocks)
+
+  initRepo.execute { |configuration| 
+    configuration.each do |v|
+      globalEntry = v
+         
       puts
       puts " > " + globalEntry.to_s
       globalEntry.instance_variables.each do |sv|
@@ -109,7 +118,6 @@ begin
         info = entry.info;
         hideInput = entry.hideinput;
         question = "\tEnter the " + info + ": "
-        #question = question.ljust(50)
         value = ask(question) { |q| q.echo = "*" } if hideInput
         value = ask(question) { |q| q.default = entry.value } if !hideInput
         entry.value = value
@@ -117,10 +125,11 @@ begin
     end
   }
   
+  
 rescue Interrupt => e
   puts "\ninterupted"
 end
 
-exit initWorkflow.wasSuccessfull? ? 0 : 1
+exit initRepo.wasSuccessfull? ? 0 : 1
 
 

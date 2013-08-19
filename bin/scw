@@ -1,7 +1,4 @@
-#!/opt/local/bin/ruby1.9
-
-require "bundler/setup"
-Bundler.require(:default)
+#!/usr/bin/env ruby
 
 require "scm-workflow.rb"
 require "utils/command-dispatcher.rb"
@@ -24,7 +21,8 @@ $scriptPath = File.expand_path(File.dirname(__FILE__))
 $scriptName = File.basename(__FILE__)
 $command = ARGV.shift
 
-dispatcher = Scm::Workflow::Utils::CommandDispatcher.new( $scriptPath, $scriptName )
+dispatcher = Scm::Workflow::Utils::CommandDispatcher.new( 
+    $scriptPath, $scriptName )
 
 # -----------------------------------------------------------------------------
 # -----------------------------------------------------------------------------
