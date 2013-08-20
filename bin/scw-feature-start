@@ -10,7 +10,7 @@ require "base64"
 #-----------------------------------------------------------------------------
 #-----------------------------------------------------------------------------
 def usage() 
-  puts "Commands for initialization of a local repo."
+  puts "Commands for starting a feature local repo."
   exit 0
 end
 
@@ -131,5 +131,6 @@ rescue Interrupt => e
 end
 
 exit initRepo.wasSuccessfull? ? 0 : 1
+
 
 

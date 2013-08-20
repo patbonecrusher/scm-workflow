@@ -26,9 +26,13 @@ module Scm::Workflow::Utils
     # -------------------------------------------------------------------------
     def usage()
       Dir.glob(@commandPrefix + '*').each do |f|
-        help = `#{f} --usage`
-        command = File.basename(f).gsub!( "-", " " )
-        $stdout.puts command.ljust(25)  + " : " + help 
+        tmp=f.slice(@commandPrefix.size, f.size)
+        invalid=tmp.include? "-"
+        if !invalid
+          help = `#{f} --usage`
+          command = File.basename(f).gsub!( "-", " " )
+          $stdout.puts command.ljust(25)  + " : " + help 
+        end 
       end
     end
 

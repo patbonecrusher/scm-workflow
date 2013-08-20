@@ -2,7 +2,6 @@
 
 require "scm-workflow"
 require "utils/command-dispatcher"
-require 'highline/import'
 
 # -----------------------------------------------------------------------------
 # This program is meant to be used as an extention to the git scm program.  It
@@ -22,14 +21,28 @@ $scriptPath = File.expand_path(File.dirname(__FILE__))
 $scriptName = File.basename(__FILE__)
 $command = ARGV.shift
 
-dispatcher = Scm::Workflow::Utils::CommandDispatcher.new( $scriptPath, $scriptName )
+dispatcher = Scm::Workflow::Utils::CommandDispatcher.new($scriptPath, $scriptName )
+#-----------------------------------------------------------------------------
+#-----------------------------------------------------------------------------
+def usage() 
+  puts "Commands for working on a feature."
+  exit 0
+end
+
+#-----------------------------------------------------------------------------
+# ................ A R G U M E N T S .. P R O C E S S I N G .................
+#-----------------------------------------------------------------------------
+
+if ($command == "--usage")
+  usage
+end
 
 # -----------------------------------------------------------------------------
 # -----------------------------------------------------------------------------
 begin
   dispatcher.dispatchCommand($command, *ARGV)
 rescue ArgumentError => ex
-  $stderr.puts "Error: " + ex.to_s + ".  Please specify a valid command."
+  $stderr.puts "Error: " + ex.to_s + ".  Please specify a valid feature command."
   dispatcher.usage
   exit -1
 ensure
@@ -38,3 +51,4 @@ end
 # -----------------------------------------------------------------------------
 # set filetype=ruby
 # -----------------------------------------------------------------------------
+
