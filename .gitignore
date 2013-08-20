@@ -1,3 +1,7 @@
 .*.swp
 .DS_Store
 *.lock
+coverage
+doc
+pkg
+vendor/cache
