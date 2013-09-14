@@ -1,5 +1,7 @@
 # Scm::Workflow
 
+[![Build Status](https://travis-ci.org/patbonecrusher/scm-workflow.png?branch=master)](https://travis-ci.org/patbonecrusher/scm-workflow) <a href="https://codeclimate.com/github/patbonecrusher/scm-workflow"><img src="https://codeclimate.com/github/patbonecrusher/scm-workflow.png" /></a>
+
 TODO: Write a gem description
 
 ## Installation
